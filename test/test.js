@@ -1,4 +1,18 @@
 describe('the traverse utility', function() {
+/*
+  The following tests work on this tree:
+
+        O-->null
+       / \
+      O-->O-->null
+     /   / \
+    O-->O-->O-->null
+   /       / \
+  O------>O-->O-->null
+ / \
+O-->O-->null
+
+*/
   it('correctly sets the neighbors of the first level', function() {
     var root = {
       neighbor: null,
@@ -92,27 +106,21 @@ describe('the traverse utility', function() {
 
   it('correctly sets the neighbors of the third level', function() {
     var root = {
-      id: 'a',
       neighbor: null,
       children: [
         {
-          id: 'b',
           children: [
             {
-              id: 'd',
               children: [
                 {
-                  id: 'g',
                   children: [
                     {
-                      id: 'j',
                       children: [
                         null,
                         null
                       ]
                     },
                     {
-                      id: 'k',
                       children: [
                         null,
                         null
