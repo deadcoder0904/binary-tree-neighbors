@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/claudiopro/binary-tree-neighbors.svg?branch=master)](https://travis-ci.org/claudiopro/binary-tree-neighbors)
+
 # binary-tree-neighbors
 
 Label nodes of a binary tree with nearest right-hand neighbor
@@ -30,6 +32,8 @@ The program will label the tree with the nearest right-hand neighbor as follows:
  O-->O-->null
 ```
 
-# license
+# License
 
-MIT
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2015 Claudio Procida
