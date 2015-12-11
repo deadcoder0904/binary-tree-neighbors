@@ -340,7 +340,7 @@ O-->O-->null O-->O-->null O-->O-->null O-->O-->null O-->O-->null O-->O-->null O-
     expect(root.children[1].children[1].children[1].children[1].neighbor).toBeNull();
   });
 
-  // Weird trees
+  // Unbalanced trees
 
 /*
         O-->null
@@ -354,7 +354,7 @@ O-->O-->null O-->O-->null O-->O-->null O-->O-->null O-->O-->null O-->O-->null O-
 O-------------->O-->null
 */
 
-  it('correctly sets the neighbors in weird tree #1', function() {
+  it('correctly sets the neighbors in unbalanced tree #1', function() {
     var root = {
       neighbor: null,
       children: [
@@ -430,7 +430,7 @@ O-------------->O-->null
 O-->null
 */
 
-  it('correctly sets the neighbors in weird tree #2', function() {
+  it('correctly sets the neighbors in unbalanced tree #2', function() {
     var root = {
       neighbor: null,
       children: [
@@ -482,7 +482,7 @@ O-->null
                 O-->null
 */
 
-  it('correctly sets the neighbors in weird tree #3', function() {
+  it('correctly sets the neighbors in unbalanced tree #3', function() {
     var root = {
       neighbor: null,
       children: [
