@@ -1,7 +1,8 @@
 describe('the traverse utility', function() {
-/*
-  The following tests work on this tree:
 
+  // Reference tree
+
+/*
         O-->null
        / \
       O-->O-->null
@@ -11,22 +12,62 @@ describe('the traverse utility', function() {
   O------>O-->O-->null
  / \
 O-->O-->null
-
 */
-  it('correctly sets the neighbors of the first level', function() {
+
+  it('correctly sets the neighbors in reference tree', function() {
     var root = {
       neighbor: null,
       children: [
         {
           children: [
-            null,
+            {
+              children: [
+                {
+                  children: [
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                },
+                null
+              ]
+            },
             null
           ]
         },
         {
           children: [
-            null,
-            null
+            {
+              children: [
+                null,
+                null
+              ]
+            },
+            {
+              children: [
+                {
+                  children: [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  children: [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            }
           ]
         }
       ]
@@ -36,141 +77,74 @@ O-->O-->null
 
     expect(root.children[0].neighbor).toEqual(root.children[1]);
     expect(root.children[1].neighbor).toBeNull();
-  });
-
-  it('correctly sets the neighbors of the second level', function() {
-    var root = {
-      neighbor: null,
-      children: [
-        {
-          children: [
-            {
-              children: [
-                {
-                  children: [
-                    {
-                      children: [
-                        null,
-                        null
-                      ]
-                    },
-                    {
-                      children: [
-                        null,
-                        null
-                      ]
-                    }
-                  ]
-                },
-                null
-              ]
-            },
-            null
-          ]
-        },
-        {
-          children: [
-            {
-              children: [
-                null,
-                null
-              ]
-            },
-            {
-              children: [
-                {
-                  children: [
-                    null,
-                    null
-                  ]
-                },
-                {
-                  children: [
-                    null,
-                    null
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    };
-
-    traverse(root, null);
 
     expect(root.children[0].children[0].neighbor).toEqual(root.children[1].children[0]);
     expect(root.children[1].children[0].neighbor).toEqual(root.children[1].children[1]);
     expect(root.children[1].children[1].neighbor).toBeNull();
-  });
-
-  it('correctly sets the neighbors of the third level', function() {
-    var root = {
-      neighbor: null,
-      children: [
-        {
-          children: [
-            {
-              children: [
-                {
-                  children: [
-                    {
-                      children: [
-                        null,
-                        null
-                      ]
-                    },
-                    {
-                      children: [
-                        null,
-                        null
-                      ]
-                    }
-                  ]
-                },
-                null
-              ]
-            },
-            null
-          ]
-        },
-        {
-          children: [
-            {
-              children: [
-                null,
-                null
-              ]
-            },
-            {
-              children: [
-                {
-                  children: [
-                    null,
-                    null
-                  ]
-                },
-                {
-                  children: [
-                    null,
-                    null
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    };
-
-    traverse(root, null);
 
     expect(root.children[0].children[0].children[0].neighbor).toEqual(root.children[1].children[1].children[0]);
     expect(root.children[1].children[1].children[0].neighbor).toEqual(root.children[1].children[1].children[1]);
     expect(root.children[1].children[1].children[1].neighbor).toBeNull();
+
+    expect(root.children[0].children[0].children[0].children[0].neighbor).toEqual(root.children[0].children[0].children[0].children[1]);
+    expect(root.children[0].children[0].children[0].children[1].neighbor).toBeNull();
   });
 
-  it('correctly sets the neighbors of the fourth level', function() {
+  // Perfectly balanced tree
+
+/*
+                                                O-->null
+                                               / \
+                                              /   \
+                                             /     \
+                                            /       \
+                                           /         \
+                                          /           \
+                                         /             \
+                                        /               \
+                                       /                 \
+                                      /                   \
+                                     /                     \
+                                    /                       \
+                                   /                         \
+                                  /                           \
+                                 /                             \
+                                /                               \
+                               /                                 \
+                              /                                   \
+                             /                                     \
+                            /                                       \
+                           /                                         \
+                          /                                           \
+                         /                                             \
+                        /                                               \
+                       /                                                 \
+                      O-------------------------------------------------->O-->null
+                     / \                                                 / \
+                    /   \                                               /   \
+                   /     \                                             /     \
+                  /       \                                           /       \
+                 /         \                                         /         \
+                /           \                                       /           \
+               /             \                                     /             \
+              /               \                                   /               \
+             /                 \                                 /                 \
+            /                   \                               /                   \
+           /                     \                             /                     \
+          /                       \                           /                       \
+         O------------------------>O------------------------>O------------------------>O-->null
+        / \                       / \                       / \                       / \
+       /   \                     /   \                     /   \                     /   \
+      /     \                   /     \                   /     \                   /     \
+     /       \                 /       \                 /       \                 /       \
+    /         \               /         \               /         \               /         \
+   /           \             /           \             /           \             /           \
+  O----------->O----------->O----------->O----------->O----------->O----------->O----------->O-->null
+ / \          / \          / \          / \          / \          / \          / \          / \
+O-->O-->null O-->O-->null O-->O-->null O-->O-->null O-->O-->null O-->O-->null O-->O-->null O-->O-->null
+*/
+
+  it('correctly sets the neighbors in a fully balanced tree', function() {
     var root = {
       neighbor: null,
       children: [
@@ -194,32 +168,132 @@ O-->O-->null
                     }
                   ]
                 },
-                null
+                {
+                  children: [
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                }
               ]
             },
-            null
+            {
+              children: [
+                {
+                  children: [
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                },
+                {
+                  children: [
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         },
         {
           children: [
             {
               children: [
-                null,
-                null
+                {
+                  children: [
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                },
+                {
+                  children: [
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                }
               ]
             },
             {
               children: [
                 {
                   children: [
-                    null,
-                    null
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    }
                   ]
                 },
                 {
                   children: [
-                    null,
-                    null
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    }
                   ]
                 }
               ]
@@ -231,7 +305,220 @@ O-->O-->null
 
     traverse(root, null);
 
+    expect(root.children[0].neighbor).toEqual(root.children[1]);
+    expect(root.children[1].neighbor).toBeNull();
+
+    expect(root.children[0].children[0].neighbor).toEqual(root.children[0].children[1]);
+    expect(root.children[0].children[1].neighbor).toEqual(root.children[1].children[0]);
+    expect(root.children[1].children[0].neighbor).toEqual(root.children[1].children[1]);
+    expect(root.children[1].children[1].neighbor).toBeNull();
+
+    expect(root.children[0].children[0].children[0].neighbor).toEqual(root.children[0].children[0].children[1]);
+    expect(root.children[0].children[0].children[1].neighbor).toEqual(root.children[0].children[1].children[0]);
+    expect(root.children[0].children[1].children[0].neighbor).toEqual(root.children[0].children[1].children[1]);
+    expect(root.children[0].children[1].children[1].neighbor).toEqual(root.children[1].children[0].children[0]);
+    expect(root.children[1].children[0].children[0].neighbor).toEqual(root.children[1].children[0].children[1]);
+    expect(root.children[1].children[0].children[1].neighbor).toEqual(root.children[1].children[1].children[0]);
+    expect(root.children[1].children[1].children[0].neighbor).toEqual(root.children[1].children[1].children[1]);
+    expect(root.children[1].children[1].children[1].neighbor).toBeNull();
+
     expect(root.children[0].children[0].children[0].children[0].neighbor).toEqual(root.children[0].children[0].children[0].children[1]);
-    expect(root.children[0].children[0].children[0].children[1].neighbor).toBeNull();
+    expect(root.children[0].children[0].children[0].children[1].neighbor).toEqual(root.children[0].children[0].children[1].children[0]);
+    expect(root.children[0].children[0].children[1].children[0].neighbor).toEqual(root.children[0].children[0].children[1].children[1]);
+    expect(root.children[0].children[0].children[1].children[1].neighbor).toEqual(root.children[0].children[1].children[0].children[0]);
+    expect(root.children[0].children[1].children[0].children[0].neighbor).toEqual(root.children[0].children[1].children[0].children[1]);
+    expect(root.children[0].children[1].children[0].children[1].neighbor).toEqual(root.children[0].children[1].children[1].children[0]);
+    expect(root.children[0].children[1].children[1].children[0].neighbor).toEqual(root.children[0].children[1].children[1].children[1]);
+    expect(root.children[0].children[1].children[1].children[1].neighbor).toEqual(root.children[1].children[0].children[0].children[0]);
+    expect(root.children[1].children[0].children[0].children[0].neighbor).toEqual(root.children[1].children[0].children[0].children[1]);
+    expect(root.children[1].children[0].children[0].children[1].neighbor).toEqual(root.children[1].children[0].children[1].children[0]);
+    expect(root.children[1].children[0].children[1].children[0].neighbor).toEqual(root.children[1].children[0].children[1].children[1]);
+    expect(root.children[1].children[0].children[1].children[1].neighbor).toEqual(root.children[1].children[1].children[0].children[0]);
+    expect(root.children[1].children[1].children[0].children[0].neighbor).toEqual(root.children[1].children[1].children[0].children[1]);
+    expect(root.children[1].children[1].children[0].children[1].neighbor).toEqual(root.children[1].children[1].children[1].children[0]);
+    expect(root.children[1].children[1].children[1].children[0].neighbor).toEqual(root.children[1].children[1].children[1].children[1]);
+    expect(root.children[1].children[1].children[1].children[1].neighbor).toBeNull();
+  });
+
+  // Weird trees
+
+/*
+        O-->null
+       / \
+      O-->O-->null
+     /     \
+    O------>O-->null
+   /         \
+  O---------->O-->null
+ /             \
+O-------------->O-->null
+*/
+
+  it('correctly sets the neighbors in weird tree #1', function() {
+    var root = {
+      neighbor: null,
+      children: [
+        {
+          children: [
+            {
+              children: [
+                {
+                  children: [
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    },
+                    null
+                  ]
+                },
+                null
+              ]
+            },
+            null
+          ]
+        },
+        {
+          children: [
+            null,
+            {
+              children: [
+                null,
+                {
+                  children: [
+                    null,
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+    traverse(root, null);
+
+    expect(root.children[0].neighbor).toEqual(root.children[1]);
+    expect(root.children[1].neighbor).toBeNull();
+
+    expect(root.children[0].children[0].neighbor).toEqual(root.children[1].children[1]);
+    expect(root.children[1].children[1].neighbor).toBeNull();
+
+    expect(root.children[0].children[0].children[0].neighbor).toEqual(root.children[1].children[1].children[1]);
+    expect(root.children[1].children[1].children[1].neighbor).toBeNull();
+
+    expect(root.children[0].children[0].children[0].children[0].neighbor).toEqual(root.children[1].children[1].children[1].children[1]);
+    expect(root.children[1].children[1].children[1].children[1].neighbor).toBeNull();
+  });
+
+/*
+        O-->null
+       /
+      O-->null
+     /
+    O-->null
+   /
+  O-->null
+ /
+O-->null
+*/
+
+  it('correctly sets the neighbors in weird tree #2', function() {
+    var root = {
+      neighbor: null,
+      children: [
+        {
+          children: [
+            {
+              children: [
+                {
+                  children: [
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    },
+                    null
+                  ]
+                },
+                null
+              ]
+            },
+            null
+          ]
+        },
+        null
+      ]
+    };
+
+    traverse(root, null);
+
+    expect(root.children[0].neighbor).toBeNull();
+
+    expect(root.children[0].children[0].neighbor).toBeNull();
+
+    expect(root.children[0].children[0].children[0].neighbor).toBeNull();
+
+    expect(root.children[0].children[0].children[0].children[0].neighbor).toBeNull();
+  });
+
+/*
+        O-->null
+         \
+          O-->null
+           \
+            O-->null
+             \
+              O-->null
+               \
+                O-->null
+*/
+
+  it('correctly sets the neighbors in weird tree #3', function() {
+    var root = {
+      neighbor: null,
+      children: [
+        null,
+        {
+          children: [
+            null,
+            {
+              children: [
+                null,
+                {
+                  children: [
+                    null,
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+    traverse(root, null);
+
+    expect(root.children[1].neighbor).toBeNull();
+
+    expect(root.children[1].children[1].neighbor).toBeNull();
+
+    expect(root.children[1].children[1].children[1].neighbor).toBeNull();
+
+    expect(root.children[1].children[1].children[1].children[1].neighbor).toBeNull();
   });
 });
