@@ -34,58 +34,45 @@ The program will label the tree with the nearest right-hand neighbor as follows:
 
 ## Usage
 
+### Example
+
+```
+    0
+   /
+  0
+ /
+0
+
+```
+
+### Code
+
 ```js
-var traverse = require('binary_tree_neighbours');
+
+var traverse = require('binary-tree-neighbors');
 
 var root = {
-      neighbor: null,
-      children: [
-        {
+  neighbor: null,
+  children: [
+          {
           children: [
-            {
-              children: [
-                {
-                  children: [
-                    {
-                      children: [
-                        null,
-                        null
-                      ]
-                    },
-                    null
-                  ]
-                },
-                null
-              ]
-            },
-            null
-          ]
+                          null,
+                          null
+                    ]
         },
-        {
-          children: [
-            null,
-            {
-              children: [
-                null,
-                {
-                  children: [
-                    null,
-                    {
-                      children: [
-                        null,
-                        null
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
+        null
       ]
-    };
+}
 
-  traverse(root, null);
+console.log("Before\n");
+
+console.log(JSON.stringify(root));
+
+traverse(root, null);
+
+console.log("After\n");
+
+console.log(JSON.stringify(root));
 
 ```
 
@@ -93,15 +80,36 @@ var root = {
 
 ```
 
-        O-->null
-       /
-      O-->null
-     /
-    O-->null
-   /
-  O-->null
- /
-O-->null
+Before
+
+{
+    "children": [
+        {
+            "children": [
+                null,
+                null
+            ]
+        },
+        null
+    ],
+    "neighbor": null
+}
+
+After
+
+{
+    "children": [
+        {
+            "children": [
+                null,
+                null
+            ],
+            "neighbor": null
+        },
+        null
+    ],
+    "neighbor": null
+}
 
 ```
 

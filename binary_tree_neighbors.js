@@ -12,13 +12,6 @@
  *     j-->k-->null
  */
 
-if (typeof exports !== 'undefined') {
-  if (typeof module !== 'undefined' && module.exports) {
-    exports = module.exports = traverse;
-  }
-  exports.traverse = traverse;
-}
-
 /** 
  *  @param {node} node
  *  @param {node} leftmost
@@ -55,4 +48,11 @@ function get_closest_neighbor_child(node) {
     return null;
   }
   return node.children[0] || node.children[1] || get_closest_neighbor_child(node.neighbor);
+}
+
+if (typeof exports !== 'undefined') {
+  if (typeof module !== 'undefined' && module.exports) {
+    exports = module.exports = traverse;
+  }
+  exports.traverse = traverse;
 }
