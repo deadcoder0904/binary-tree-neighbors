@@ -1,23 +1,29 @@
-// Write an algorithm that associates the neighbors of nodes in a binary tree as
-// the picture below suggests:
-//
-//         a-->null
-//        / \
-//       b-->c-->null
-//      /   / \
-//     d-->e-->f-->null
-//    /       / \
-//   g------>h-->i-->null
-//  / \
-// j-->k-->null
-//
+/**
+ *  Associates the neighbors of nodes in a binary tree as the picture below suggests:
+ * 
+ *             a-->null
+ *            / \
+ *           b-->c-->null
+ *          /   / \
+ *         d-->e-->f-->null
+ *        /       / \
+ *       g------>h-->i-->null
+ *      / \
+ *     j-->k-->null
+ */
 
-// Data structure:
-// Node:
-// {
-//   neighbor: Node|null,
-//   children: Array<Node>(2)
-// }
+if (typeof exports !== 'undefined') {
+  if (typeof module !== 'undefined' && module.exports) {
+    exports = module.exports = traverse;
+  }
+  exports.traverse = traverse;
+}
+
+/** 
+ *  @param {node} node
+ *  @param {node} leftmost
+ *  @return {void}
+ */
 
 function traverse(node, leftmost) {
   if (node.children[0] && node.children[1]) {
@@ -37,6 +43,11 @@ function traverse(node, leftmost) {
   }
   // no-op if no children
 }
+
+/** 
+ *  @param {node} node
+ *  @return {node}
+ */
 
 function get_closest_neighbor_child(node) {
   // node can be undefined if called to prime a node

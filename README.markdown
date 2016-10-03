@@ -32,6 +32,73 @@ The program will label the tree with the nearest right-hand neighbor as follows:
  O-->O-->null
 ```
 
+```js
+var traverse = require('binary_tree_neighbours');
+
+var root = {
+      neighbor: null,
+      children: [
+        {
+          children: [
+            {
+              children: [
+                {
+                  children: [
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    },
+                    null
+                  ]
+                },
+                null
+              ]
+            },
+            null
+          ]
+        },
+        {
+          children: [
+            null,
+            {
+              children: [
+                null,
+                {
+                  children: [
+                    null,
+                    {
+                      children: [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+  traverse(root, null);
+
+```
+
+/* Output --
+        O-->null
+       /
+      O-->null
+     /
+    O-->null
+   /
+  O-->null
+ /
+O-->null
+*/
+
 # License
 
 [MIT](http://opensource.org/licenses/MIT)

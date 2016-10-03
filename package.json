@@ -1,13 +1,16 @@
 {
   "name": "binary-tree-neighbors",
   "version": "1.0.0",
-  "description": "",
+  "description": "Utility to find Binary Tree Neighbours",
   "main": "binary_tree_neighbors.js",
   "scripts": {
     "test": "karma start",
     "test-ci": "karma start karma.conf.js --single-run --browsers PhantomJS"
   },
   "author": "Claudio Procida",
+  "contributors": [
+    "Akshay Kadam <akshaykadam0904@gmail.com>"
+  ],
   "license": "MIT",
   "devDependencies": {
     "jasmine-core": "^2.4.1",
