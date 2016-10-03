@@ -32,6 +32,10 @@ The program will label the tree with the nearest right-hand neighbor as follows:
  O-->O-->null
 ```
 
+## Installation
+
+`npm install binary-tree-neighbors --save`
+
 ## Usage
 
 ### Example
