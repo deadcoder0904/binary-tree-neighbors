@@ -32,6 +32,8 @@ The program will label the tree with the nearest right-hand neighbor as follows:
  O-->O-->null
 ```
 
+## Usage
+
 ```js
 var traverse = require('binary_tree_neighbours');
 
@@ -87,7 +89,10 @@ var root = {
 
 ```
 
-/* Output --
+## Output
+
+```
+
         O-->null
        /
       O-->null
@@ -97,7 +102,8 @@ var root = {
   O-->null
  /
 O-->null
-*/
+
+```
 
 # License
 
