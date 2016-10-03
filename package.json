@@ -1,6 +1,6 @@
 {
   "name": "binary-tree-neighbors",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility to find Binary Tree Neighbours",
   "main": "binary_tree_neighbors.js",
   "scripts": {
