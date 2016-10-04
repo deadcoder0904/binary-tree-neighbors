@@ -1,7 +1,7 @@
 {
   "name": "binary-tree-neighbors",
   "version": "1.0.1",
-  "description": "Utility to find Binary Tree Neighbours",
+  "description": "Utility to find Binary Tree Neighbors",
   "main": "binary_tree_neighbors.js",
   "scripts": {
     "test": "karma start",
@@ -9,6 +9,7 @@
   },
   "author": "Claudio Procida",
   "contributors": [
+    "Claudio Procida <claudio.procida@gmail.com>",
     "Akshay Kadam <akshaykadam0904@gmail.com>"
   ],
   "license": "MIT",
