@@ -13,8 +13,8 @@
  */
 
 /** 
- *  @param {node} node
- *  @param {node} leftmost
+ *  @typedef {node} node
+ *  @typedef {node} leftmost
  *  @return {void}
  */
 
@@ -38,7 +38,7 @@ function traverse(node, leftmost) {
 }
 
 /** 
- *  @param {node} node
+ *  @typedef {node} node
  *  @return {node}
  */
 
